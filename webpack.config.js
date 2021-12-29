@@ -46,6 +46,9 @@ const baseConfig = {
     optimization: {
         minimize: true, // минимизирует js код в main.js
     },
+    experiments: {
+        topLevelAwait: true,
+    },
 };
 
 module.exports = ({ mode }) => {
