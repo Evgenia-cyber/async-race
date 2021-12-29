@@ -1,10 +1,8 @@
-import { PAGE_NAME, DEFAULT_PAGE_NUMBER } from './constants';
+import { VIEW_NAME, DEFAULT_PAGE_NUMBER } from './constants';
 
 const store = {
-    currentView: PAGE_NAME.garage,
+    currentView: VIEW_NAME.garage,
     garageViewCurrentPageNum: DEFAULT_PAGE_NUMBER,
 };
-
-console.log(1);
 
 export default store;

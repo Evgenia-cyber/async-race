@@ -1,4 +1,4 @@
-export const PAGE_NAME = {
+export const VIEW_NAME = {
     garage: 'Garage',
     winners: 'Winners',
 };
