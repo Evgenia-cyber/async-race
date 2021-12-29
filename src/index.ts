@@ -22,5 +22,12 @@ const toWinnersHandler = () => {
     garageViewEl.classList.add('hide');
     winnersViewEl.classList.remove('hide');
 };
-
 document.querySelector('#link-to-winners').addEventListener('click', toWinnersHandler);
+
+const handlerOnClick = (event: MouseEvent) => {
+    event.preventDefault();
+    const element = event.target as HTMLElement;
+    console.log(1, element);
+    console.log(2, element.id);
+};
+document.addEventListener('click', handlerOnClick);

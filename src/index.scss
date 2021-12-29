@@ -1,9 +1,44 @@
+body {
+    margin: 40px 20px;
+    color: #ffffff;
+    background-color: #292525;
+}
+
 .hide {
-   display: none;
+    display: none;
 }
 
 .button {
-&:hover{
-   cursor: pointer;
+   background-color: #d5faff;
+    &:hover {
+       background-color: #aef4fd;
+        cursor: pointer;
+    }
 }
+
+.car-item {
+    margin-bottom: 30px;
+    .road {
+        position: relative;
+        height: 30px;
+        margin-bottom: 5px;
+        border-bottom: 2px dashed #ffffff;
+        .flag {
+            position: absolute;
+            bottom: 3px;
+            right: 80px;
+        }
+    }
+
+    .car {
+        height: 100%;
+        svg {
+            width: 50px;
+            height: 100%;
+        }
+    }
+
+    .car-name {
+        margin-bottom: 0;
+    }
 }

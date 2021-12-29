@@ -24,7 +24,7 @@ export const getWinners = async (
 
     if (!response.ok) {
         winners = [];
-        allWinnersCount = 0;
+        allWinnersCount = '0';
     } else {
         winners = await response.json();
 
