@@ -1,3 +1,8 @@
+export enum STATUS {
+    OK = 200,
+    CREATED = 201,
+}
+
 export enum SORTS {
     ID = 'id',
     WINS = 'wins',

@@ -1,5 +1,5 @@
 import { COUNT_CARS_PER_PAGE, ENDPOINTS, COUNT_WINNERS_PER_PAGE } from './constants';
-import { ORDERS, SORTS } from './types/common';
+import { ORDERS, SORTS, STATUS } from './types/common';
 
 export const createCar = async (name: string, color: string) => {
     const response = await fetch(`${ENDPOINTS.garage}`, {
@@ -10,7 +10,7 @@ export const createCar = async (name: string, color: string) => {
         body: JSON.stringify({ name, color }),
     });
 
-    if (response.status === 201) {
+    if (response.status === STATUS.CREATED) {
         const newCar = await response.json();
         return newCar;
     }
@@ -39,7 +39,7 @@ export const getWinners = async (
     let winners;
     let allWinnersCount;
 
-    if (!response.ok) {
+    if (response.status !== STATUS.OK) {
         winners = [];
         allWinnersCount = '0';
     } else {
