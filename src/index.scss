@@ -18,6 +18,10 @@ input:focus {
         background-color: #aef4fd;
         cursor: pointer;
     }
+    &:disabled {
+        background-color: #d5faff;
+        cursor: default;
+    }
 }
 
 .car-item {
@@ -49,6 +53,10 @@ input:focus {
 
 .form {
     margin-top: 20px;
+
+    input[type='text']:disabled {
+        border-color: transparent;
+    }
 
     input[type='color']::-webkit-color-swatch-wrapper {
         padding: 0;

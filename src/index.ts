@@ -4,6 +4,7 @@ import { VIEW_NAME } from './constants';
 import './index.scss';
 import store from './store';
 import createCar from './utils/createCar';
+import selectCar from './utils/selectCar';
 
 const root = document.querySelector('#root');
 root.innerHTML = renderApp();
@@ -13,6 +14,10 @@ const winnersViewEl = document.querySelector('.winners-view');
 
 const createCarNameInput = document.querySelector('#create-car-name') as HTMLInputElement;
 const createCarColorInput = document.querySelector('#create-car-color') as HTMLInputElement;
+
+const updateCarNameInput = document.querySelector('#update-car-name') as HTMLInputElement;
+const updateCarColorInput = document.querySelector('#update-car-color') as HTMLInputElement;
+const updateSubmit = document.querySelector('#submit-update-car') as HTMLInputElement;
 
 const toGarageHandler = () => {
     store.currentView = VIEW_NAME.garage;
@@ -30,15 +35,11 @@ document.querySelector('#link-to-winners').addEventListener('click', toWinnersHa
 
 const handlerOnClick = (event: MouseEvent) => {
     const { id } = event.target as HTMLElement;
-    // console.log(1, element);
     console.log(2, id);
-    switch (id) {
-        case 'submit-create-car':
-            createCar(event, createCarNameInput, createCarColorInput);
-            break;
-        default:
-            // eslint-disable-next-line no-console
-            console.log('Click on an unused element');
+    if (id === 'submit-create-car') {
+        createCar(event, createCarNameInput, createCarColorInput);
+    } else if (id.includes('select-car-')) {
+        selectCar(event, id, updateCarNameInput, updateCarColorInput, updateSubmit);
     }
 };
 document.addEventListener('click', handlerOnClick);
