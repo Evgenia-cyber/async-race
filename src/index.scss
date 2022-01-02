@@ -4,14 +4,18 @@ body {
     background-color: #292525;
 }
 
+input:focus {
+    outline: none;
+}
+
 .hide {
     display: none;
 }
 
 .button {
-   background-color: #d5faff;
+    background-color: #d5faff;
     &:hover {
-       background-color: #aef4fd;
+        background-color: #aef4fd;
         cursor: pointer;
     }
 }
@@ -40,5 +44,24 @@ body {
 
     .car-name {
         margin-bottom: 0;
+    }
+}
+
+.form {
+    margin-top: 20px;
+
+    input[type='color']::-webkit-color-swatch-wrapper {
+        padding: 0;
+    }
+
+    input[type='color']::-webkit-color-swatch {
+        border: none;
+    }
+
+    .color-car-input {
+        height: 22px;
+        vertical-align: bottom;
+        background: none;
+        border: none;
     }
 }

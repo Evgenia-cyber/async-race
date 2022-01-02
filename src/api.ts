@@ -1,6 +1,23 @@
 import { COUNT_CARS_PER_PAGE, ENDPOINTS, COUNT_WINNERS_PER_PAGE } from './constants';
 import { ORDERS, SORTS } from './types/common';
 
+export const createCar = async (name: string, color: string) => {
+    const response = await fetch(`${ENDPOINTS.garage}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, color }),
+    });
+
+    if (response.status === 201) {
+        const newCar = await response.json();
+        return newCar;
+    }
+    // eslint-disable-next-line no-alert
+    return alert('Server is not available!');
+};
+
 export const getCars = async (pageNum: number, limit = COUNT_CARS_PER_PAGE) => {
     const response = await fetch(`${ENDPOINTS.garage}?_page=${pageNum}&_limit=${limit}`);
 
