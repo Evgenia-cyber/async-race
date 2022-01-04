@@ -6,6 +6,7 @@ import selectCar from './utils/selectCar';
 import updateCar from './utils/updateCar';
 
 import './index.scss';
+import paginate from './utils/paginate';
 
 const root = document.querySelector('#root');
 root.innerHTML = renderApp();
@@ -20,6 +21,12 @@ const updateCarNameInput = document.querySelector('#update-car-name') as HTMLInp
 const updateCarColorInput = document.querySelector('#update-car-color') as HTMLInputElement;
 const updateSubmit = document.querySelector('#submit-update-car') as HTMLInputElement;
 
+const garagePaginationPrevBtn = document.querySelector('#garage-pagination-prev') as HTMLButtonElement;
+const garagePaginationNextBtn = document.querySelector('#garage-pagination-next') as HTMLButtonElement;
+const garageCurrentPageEl = document.querySelector('#garage-current-page-num') as HTMLElement;
+
+const carsEl = document.querySelector('#cars') as HTMLElement;
+
 const handlerOnClick = (event: MouseEvent) => {
     const { id } = event.target as HTMLElement;
     console.log(2, id);
@@ -33,6 +40,13 @@ const handlerOnClick = (event: MouseEvent) => {
         selectCar(id, updateCarNameInput, updateCarColorInput, updateSubmit);
     } else if (id === 'submit-update-car') {
         updateCar(event, updateCarNameInput, updateCarColorInput, updateSubmit);
+    } else if (id.includes('remove-car-')) {
+        // TODO remove car from garage and from winners
+        console.log('remove this car');
+    } else if (id === 'garage-pagination-next') {
+        paginate(garagePaginationPrevBtn, garagePaginationNextBtn, garageCurrentPageEl, carsEl, true);
+    } else if (id === 'garage-pagination-prev') {
+        paginate(garagePaginationPrevBtn, garagePaginationNextBtn, garageCurrentPageEl, carsEl, false);
     }
 };
 document.addEventListener('click', handlerOnClick);
