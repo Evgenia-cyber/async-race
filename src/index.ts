@@ -1,10 +1,11 @@
 import renderApp from './app';
 import { VIEW_NAME } from './constants';
-
-import './index.scss';
 import createCar from './utils/createCar';
 import linkTo from './utils/linkTo';
 import selectCar from './utils/selectCar';
+import updateCar from './utils/updateCar';
+
+import './index.scss';
 
 const root = document.querySelector('#root');
 root.innerHTML = renderApp();
@@ -29,7 +30,9 @@ const handlerOnClick = (event: MouseEvent) => {
     } else if (id === 'submit-create-car') {
         createCar(event, createCarNameInput, createCarColorInput);
     } else if (id.includes('select-car-')) {
-        selectCar(event, id, updateCarNameInput, updateCarColorInput, updateSubmit);
+        selectCar(id, updateCarNameInput, updateCarColorInput, updateSubmit);
+    } else if (id === 'submit-update-car') {
+        updateCar(event, updateCarNameInput, updateCarColorInput, updateSubmit);
     }
 };
 document.addEventListener('click', handlerOnClick);

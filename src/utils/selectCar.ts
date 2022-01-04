@@ -1,7 +1,6 @@
 import store from '../store';
 
 const selectCar = (
-    event: MouseEvent,
     id: string,
     nameInput: HTMLInputElement,
     colorInput: HTMLInputElement,
@@ -14,6 +13,7 @@ const selectCar = (
     colorInput.disabled = false;
     colorInput.value = selectedCar.color;
     submitButton.disabled = false;
+    submitButton.dataset.selectedCarId = selectedCarId.toString();
 };
 
 export default selectCar;
