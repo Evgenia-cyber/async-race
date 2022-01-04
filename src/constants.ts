@@ -15,3 +15,5 @@ export const ENDPOINTS = {
     garage: `${API_URL}/garage`,
     winners: `${API_URL}//winners`,
 };
+
+export const LOCAL_STORAGE_GARAGE_PAGE_NUM = 'garage-page-num';

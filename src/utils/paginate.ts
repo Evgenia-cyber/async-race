@@ -1,6 +1,6 @@
 import { getCars } from '../api';
 import renderCars from '../components/cars';
-import { DEFAULT_PAGE_NUMBER, VIEW_NAME, COUNT_CARS_PER_PAGE } from '../constants';
+import { DEFAULT_PAGE_NUMBER, VIEW_NAME, COUNT_CARS_PER_PAGE, LOCAL_STORAGE_GARAGE_PAGE_NUM } from '../constants';
 import store from '../store';
 
 export const getMaxPageNum = (allCount: string, countPerPage: number) => Math.ceil(Number(allCount) / countPerPage);
@@ -37,6 +37,8 @@ const paginate = async (
 
         store.cars = await (await getCars(newPageNum)).cars;
         rerenderedEl.innerHTML = renderCars();
+
+        localStorage.setItem(LOCAL_STORAGE_GARAGE_PAGE_NUM, newPageNum.toString());
     } else {
         console.log('make pagination to winners view');
     }
