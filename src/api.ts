@@ -1,5 +1,5 @@
 import { COUNT_CARS_PER_PAGE, ENDPOINTS, COUNT_WINNERS_PER_PAGE } from './constants';
-import { ORDERS, SORTS, STATUS } from './types/common';
+import { CAR_STATUS, ORDERS, SORTS, STATUS } from './types/common';
 
 export const createCar = async (name: string, color: string) => {
     const response = await fetch(`${ENDPOINTS.garage}`, {
@@ -35,6 +35,75 @@ export const updateCar = async (id: number, name: string, color: string) => {
     if (response.status === STATUS.NOT_FOUND) {
         // eslint-disable-next-line no-alert
         return alert('Car not found!');
+    }
+
+    // eslint-disable-next-line no-alert
+    return alert('Server is not available!');
+};
+
+export const startOrStopCar = async (id: string, status: CAR_STATUS) => {
+    const response = await fetch(`${ENDPOINTS.engine}?id=${id}&status=${status}`, {
+        method: 'PATCH',
+    });
+
+    if (response.status === STATUS.OK) {
+        const data = await response.json();
+        return data;
+    }
+
+    if (response.status === STATUS.NOT_FOUND) {
+        // eslint-disable-next-line no-console
+        return console.error('Error: Car with such id was not found in the garage.');
+    }
+
+    if (response.status === STATUS.BAD_REQUEST) {
+        // eslint-disable-next-line no-console
+        return console.error(
+            'Error: Wrong parameters: "id" should be any positive number, "status" should be "started", "stopped" or "drive"'
+        );
+    }
+
+    // eslint-disable-next-line no-alert
+    return alert('Server is not available!');
+};
+
+export const startCar = async (id: string) => startOrStopCar(id, CAR_STATUS.STARTED);
+
+export const stopCar = async (id: string) => startOrStopCar(id, CAR_STATUS.STOPPED);
+
+export const driveCar = async (id: string) => {
+    const response = await fetch(`${ENDPOINTS.engine}?id=${id}&status=${CAR_STATUS.DRIVE}`, {
+        method: 'PATCH',
+    });
+
+    if (response.status === STATUS.OK) {
+        const data = await response.json();
+        return data;
+    }
+
+    if (response.status === STATUS.NOT_FOUND) {
+        // eslint-disable-next-line no-console
+        return console.error('Error: Car with such id was not found in the garage.');
+    }
+
+    if (response.status === STATUS.BAD_REQUEST) {
+        // eslint-disable-next-line no-console
+        return console.error(
+            'Error: Wrong parameters: "id" should be any positive number, "status" should be "started", "stopped" or "drive"'
+        );
+    }
+
+    if (response.status === STATUS.TOO_MANY_REQUESTS) {
+        // eslint-disable-next-line no-console
+        return console.error(
+            "Error: Drive already in progress. You can't run drive for the same car twice while it's not stopped."
+        );
+    }
+
+    if (response.status === STATUS.INTERNAL_SERVER_ERROR) {
+        // eslint-disable-next-line no-console
+        console.error("Error: Car has been stopped suddenly. It's engine was broken down.");
+        return { success: false };
     }
 
     // eslint-disable-next-line no-alert

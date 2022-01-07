@@ -6,8 +6,8 @@ const renderCar = ({ id, name, color }: ICar) => `
 <div class='car-item'>
   <p class='car-name'>${name}</p>
   <div class='road'>
-    <div class='car' id='car-${id}'>
-      ${drawCar(color)}
+    <div class='car'>
+      ${drawCar(color, id)}
     </div>
     <img class='flag' src=${flagImg} alt='flag'/>
   </div>

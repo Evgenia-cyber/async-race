@@ -13,7 +13,8 @@ const API_URL = 'http://127.0.0.1:3000';
 
 export const ENDPOINTS = {
     garage: `${API_URL}/garage`,
-    winners: `${API_URL}//winners`,
+    winners: `${API_URL}/winners`,
+    engine: `${API_URL}/engine`,
 };
 
 export const LOCAL_STORAGE_GARAGE_PAGE_NUM = 'garage-page-num';
