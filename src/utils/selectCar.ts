@@ -1,3 +1,4 @@
+import { getId } from './utils';
 import store from '../store';
 
 const selectCar = (
@@ -6,7 +7,7 @@ const selectCar = (
     colorInput: HTMLInputElement,
     submitButton: HTMLInputElement
 ) => {
-    const selectedCarId = Number(id.split('select-car-')[1]);
+    const selectedCarId = Number(getId('select-car-', id));
     const selectedCar = store.cars.filter((car) => car.id === selectedCarId)[0];
     nameInput.disabled = false;
     nameInput.value = selectedCar.name;

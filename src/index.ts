@@ -1,3 +1,4 @@
+import { getId } from './utils/utils';
 import renderApp from './app';
 import { VIEW_NAME } from './constants';
 import createCar from './utils/createCar';
@@ -46,7 +47,7 @@ const handlerOnClick = async (event: MouseEvent) => {
         // TODO remove car from garage and from winners
         console.log('remove this car');
     } else if (id.includes('race-car-')) {
-        const carId = id.split('race-car-')[1];
+        const carId = getId('race-car-', id);
         const data = await startCar(carId);
         if (data) {
             const { velocity, distance } = data;

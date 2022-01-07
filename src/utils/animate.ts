@@ -1,7 +1,9 @@
+import { getElWidth } from './utils';
+
 export const startAnimation = (carId: string, timeFromServer: number) => {
     const carEl = document.querySelector(`#car-${carId}`) as HTMLElement;
 
-    const carLength = carEl.getBoundingClientRect().width;
+    const carLength = getElWidth(carEl);
 
     const distance = document.documentElement.clientWidth - 2 * carLength;
     const velocity = distance / timeFromServer;
