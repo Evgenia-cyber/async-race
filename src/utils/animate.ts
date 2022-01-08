@@ -1,5 +1,7 @@
 import { getElWidth } from './utils';
 
+let requestAnimationId = 0;
+
 export const startAnimation = (carId: string, timeFromServer: number) => {
     const carEl = document.querySelector(`#car-${carId}`) as HTMLElement;
 
@@ -8,7 +10,6 @@ export const startAnimation = (carId: string, timeFromServer: number) => {
     const distance = document.documentElement.clientWidth - 2 * carLength;
     const velocity = distance / timeFromServer;
 
-    let requestAnimationId;
     let start = 0;
 
     function step(timestamp: number) {
@@ -22,10 +23,9 @@ export const startAnimation = (carId: string, timeFromServer: number) => {
     }
 
     requestAnimationId = window.requestAnimationFrame(step);
-
-    return requestAnimationId;
 };
 
-export const stopAnimation = (requestAnimationId: number) => {
+export const stopAnimation = () => {
     window.cancelAnimationFrame(requestAnimationId);
+    requestAnimationId = 0;
 };

@@ -5,11 +5,10 @@ import createCar from './utils/createCar';
 import linkTo from './utils/linkTo';
 import selectCar from './utils/selectCar';
 import updateCar from './utils/updateCar';
+import paginate from './utils/paginate';
+import raceCar from './utils/raceCar';
 
 import './index.scss';
-import paginate from './utils/paginate';
-import { startCar, driveCar } from './api';
-import { startAnimation } from './utils/animate';
 
 const root = document.querySelector('#root');
 root.innerHTML = renderApp();
@@ -48,23 +47,7 @@ const handlerOnClick = async (event: MouseEvent) => {
         console.log('remove this car');
     } else if (id.includes('race-car-')) {
         const carId = getId('race-car-', id);
-        const data = await startCar(carId);
-        if (data) {
-            const { velocity, distance } = data;
-            const time = Math.round(distance / velocity);
-            console.log('start', time);
-
-            const raceBtn = document.querySelector(`#${id}`) as HTMLButtonElement;
-            raceBtn.disabled = true;
-
-            const requestAnimationId = startAnimation(carId, time);
-
-            const a = new Date();
-            const res = await driveCar(carId);
-            console.log('res', res);
-            const b = Number(new Date()) - Number(a);
-            console.log(b);
-        }
+        raceCar(carId);
     } else if (id === 'garage-pagination-next') {
         paginate(garagePaginationPrevBtn, garagePaginationNextBtn, garageCurrentPageEl, carsEl, true);
     } else if (id === 'garage-pagination-prev') {

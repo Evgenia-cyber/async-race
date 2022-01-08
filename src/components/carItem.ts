@@ -14,7 +14,7 @@ const renderCar = ({ id, name, color }: ICar) => `
   <button class='button' id='select-car-${id}'>Select</button>
   <button class='button' id='remove-car-${id}'>Remove</button>
   <button class='button' id='race-car-${id}'>Race</button>
-  <button class='button' id='reset-car-${id}'>Reset</button>
+  <button class='button' id='reset-car-${id}' disabled>Reset</button>
 </div>`;
 
 export default renderCar;
