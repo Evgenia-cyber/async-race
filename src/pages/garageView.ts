@@ -15,6 +15,7 @@ const renderGarageView = () => `
   <h3 id='garage-current-page-num'>Page#${store.garageCurrentPageNum}</h3>
   <div id='cars'>${renderCars()}</div>
   ${renderGaragePagination()}
+  <div class='popup hide'></div>
 </div>`;
 
 export default renderGarageView;

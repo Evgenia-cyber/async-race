@@ -17,7 +17,9 @@ const raceCar = async (carId: string) => {
         if (res && !res.success) {
             stopAnimation(carId);
         }
+        return { carId, time, success: res.success };
     }
+    return {};
 };
 
 export default raceCar;

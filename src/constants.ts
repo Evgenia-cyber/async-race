@@ -18,3 +18,5 @@ export const ENDPOINTS = {
 };
 
 export const LOCAL_STORAGE_GARAGE_PAGE_NUM = 'garage-page-num';
+
+export const TIME_TO_SHOW_THE_WINNER = 3000;

@@ -77,3 +77,11 @@ input:focus {
 .cars-controllers {
     margin-top: 20px;
 }
+
+.popup {
+    position: absolute;
+    left: 50%;
+    top: 20px;
+    padding: 20px;
+    border: 2px solid rgb(173, 0, 0);
+}
