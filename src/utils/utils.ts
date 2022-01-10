@@ -11,3 +11,5 @@ export const enableBtn = (elementId: string) => {
     const btn = document.querySelector(elementId) as HTMLButtonElement;
     btn.disabled = false;
 };
+
+export const getRandom = (number: number) => Math.floor(Math.random() * number);

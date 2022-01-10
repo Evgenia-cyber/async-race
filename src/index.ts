@@ -7,11 +7,12 @@ import selectCar from './utils/selectCar';
 import updateCar from './utils/updateCar';
 import paginate from './utils/paginate';
 import raceCar from './utils/raceCar';
-
-import './index.scss';
 import resetCar from './utils/resetCar';
 import raceAll from './utils/raceAll';
 import resetAll from './utils/resetAll';
+import generateCars from './utils/generateCars';
+
+import './index.scss';
 
 const root = document.querySelector('#root');
 root.innerHTML = renderApp();
@@ -58,6 +59,8 @@ const handlerOnClick = async (event: MouseEvent) => {
         raceAll();
     } else if (id === 'reset-cars') {
         resetAll();
+    } else if (id === 'generate-cars') {
+        generateCars();
     } else if (id === 'garage-pagination-next') {
         paginate(garagePaginationPrevBtn, garagePaginationNextBtn, garageCurrentPageEl, carsEl, true);
     } else if (id === 'garage-pagination-prev') {
