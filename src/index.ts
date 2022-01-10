@@ -11,6 +11,7 @@ import raceCar from './utils/raceCar';
 import './index.scss';
 import resetCar from './utils/resetCar';
 import raceAll from './utils/raceAll';
+import resetAll from './utils/resetAll';
 
 const root = document.querySelector('#root');
 root.innerHTML = renderApp();
@@ -55,6 +56,8 @@ const handlerOnClick = async (event: MouseEvent) => {
         resetCar(carId);
     } else if (id === 'race-cars') {
         raceAll();
+    } else if (id === 'reset-cars') {
+        resetAll();
     } else if (id === 'garage-pagination-next') {
         paginate(garagePaginationPrevBtn, garagePaginationNextBtn, garageCurrentPageEl, carsEl, true);
     } else if (id === 'garage-pagination-prev') {

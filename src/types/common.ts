@@ -34,10 +34,15 @@ export interface IStore {
     allWinnersCount: string;
     sort: SORTS;
     order: ORDERS;
+    controller: AbortController;
 }
 
 export enum CAR_STATUS {
     STARTED = 'started',
     STOPPED = 'stopped',
     DRIVE = 'drive',
+}
+
+export interface IAnimationState {
+    [carId: string]: number;
 }

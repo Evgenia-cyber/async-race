@@ -1,6 +1,8 @@
+import { IAnimationState } from '../types/common';
 import { getElWidth } from './utils';
 
-let requestAnimationId = 0;
+const animationState: IAnimationState = {};
+// let requestAnimationId = 0;
 
 export const startAnimation = (carId: string, timeFromServer: number) => {
     const carEl = document.querySelector(`#car-${carId}`) as HTMLElement;
@@ -18,14 +20,15 @@ export const startAnimation = (carId: string, timeFromServer: number) => {
         const drovedDistance = Math.round(velocity * time);
         carEl.style.transform = `translateX(${Math.min(drovedDistance, distance)}px)`;
         if (drovedDistance < distance) {
-            requestAnimationId = window.requestAnimationFrame(step);
+            animationState[carId] = window.requestAnimationFrame(step);
         }
     }
 
-    requestAnimationId = window.requestAnimationFrame(step);
+    animationState[carId] = window.requestAnimationFrame(step);
 };
 
-export const stopAnimation = () => {
+export const stopAnimation = (carId: string) => {
+    const requestAnimationId = animationState[carId];
     window.cancelAnimationFrame(requestAnimationId);
-    requestAnimationId = 0;
+    delete animationState[carId];
 };

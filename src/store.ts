@@ -18,6 +18,7 @@ const store: IStore = {
     allWinnersCount,
     sort: SORTS.ID,
     order: ORDERS.ASC,
+    controller: new AbortController(),
 };
 
 export default store;

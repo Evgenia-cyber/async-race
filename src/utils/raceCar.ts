@@ -15,7 +15,7 @@ const raceCar = async (carId: string) => {
 
         const res = await driveCar(carId);
         if (res && !res.success) {
-            stopAnimation();
+            stopAnimation(carId);
         }
     }
 };
