@@ -2,6 +2,7 @@ import { disableBtn, enableBtn } from './utils';
 import store from '../store';
 import raceCar from './raceCar';
 import { TIME_TO_SHOW_THE_WINNER } from '../constants';
+import saveWinner from './addWinner';
 
 const showPopup = (element: HTMLElement, text: string) => {
     element.innerHTML = text;
@@ -36,7 +37,8 @@ const getWinner = async (promises: Promise<any>[], ids: Array<number>) => {
             getWinner(promises, ids);
         } else {
             showWinnerOverTime(carId);
-            console.log('winner:', carId, time);
+            const timeInSecond = time / 1000;
+            saveWinner(carId, timeInSecond);
         }
     } catch (error) {
         // eslint-disable-next-line no-console
@@ -56,7 +58,6 @@ const raceAll = async () => {
         },
         { promises: [], ids: [] }
     );
-    // const promises = store.cars.map((car) => raceCar(car.id.toString()));
     getWinner(promises, ids);
 };
 

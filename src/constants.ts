@@ -57,3 +57,5 @@ export const RANDOM_CARS_COUNT = 100;
 export const TOTAL_NUMBER_OF_COLORS = 16777215; // is 256×256×256, the total number of colors that can be displayed using #RRGGBB color format (or with CSS rgb())
 
 export const COUNT_OF_SYMBOLS_IN_HEX = 6;
+
+export const DEFAULT_COUNT_OF_WINS = 1;

@@ -1,4 +1,4 @@
-import { COUNT_CARS_PER_PAGE, ENDPOINTS, COUNT_WINNERS_PER_PAGE } from './constants';
+import { COUNT_CARS_PER_PAGE, ENDPOINTS, COUNT_WINNERS_PER_PAGE, DEFAULT_COUNT_OF_WINS } from './constants';
 import store from './store';
 import { CAR_STATUS, IWinner, IWinnerFromServer, ORDERS, SORTS, STATUS } from './types/common';
 
@@ -176,4 +176,54 @@ export const getWinners = async (
     }
 
     return { winners, allWinnersCount };
+};
+
+const getWinner = async (id: string) => {
+    const response = await fetch(`${ENDPOINTS.winners}/${id}`);
+
+    if (response.status === STATUS.OK) {
+        const winner = await response.json();
+        return { winner, status: STATUS.OK };
+    }
+    const winner = {};
+    return { winner, status: STATUS.NOT_FOUND };
+};
+
+const createWinner = async (id: string, time: number) => {
+    const response = await fetch(`${ENDPOINTS.winners}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, wins: DEFAULT_COUNT_OF_WINS, time }),
+    });
+
+    return response.status;
+};
+
+const updateWinner = async (id: string, wins: number, time: number) => {
+    const response = await fetch(`${ENDPOINTS.winners}/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            wins,
+            time,
+        }),
+    });
+
+    return response.status;
+};
+
+export const saveWinner = async (id: string, lastWinTime: number) => {
+    const { winner, status } = await getWinner(id);
+
+    const { wins: numberOfWinsSromServer, time: timeOfWinFromServer } = winner;
+
+    if (status === STATUS.OK) {
+        const wins = numberOfWinsSromServer + 1;
+        const time = Math.max(timeOfWinFromServer, lastWinTime);
+        await updateWinner(id, wins, time);
+    } else {
+        await createWinner(id, lastWinTime);
+    }
 };
