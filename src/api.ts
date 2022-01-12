@@ -1,6 +1,24 @@
 import { COUNT_CARS_PER_PAGE, ENDPOINTS, COUNT_WINNERS_PER_PAGE } from './constants';
 import store from './store';
-import { CAR_STATUS, ORDERS, SORTS, STATUS } from './types/common';
+import { CAR_STATUS, IWinner, IWinnerFromServer, ORDERS, SORTS, STATUS } from './types/common';
+
+export const getCar = async (id: number) => {
+    const response = await fetch(`${ENDPOINTS.garage}/${id}`);
+
+    if (response.status === STATUS.OK) {
+        const car = await response.json();
+        return car;
+    }
+
+    if (response.status === STATUS.NOT_FOUND) {
+        // eslint-disable-next-line no-console
+        console.log(`Error: car id=${id} not found in winners`);
+        return {};
+    }
+
+    // eslint-disable-next-line no-alert
+    return alert('Server is not available!');
+};
 
 export const createCar = async (name: string, color: string) => {
     const response = await fetch(`${ENDPOINTS.garage}`, {
@@ -138,16 +156,23 @@ export const getWinners = async (
 ) => {
     const response = await fetch(`${ENDPOINTS.winners}?_page=${pageNum}&_limit=${limit}&_sort=${sort}&_order=${order}`);
 
-    let winners;
+    let winners: Array<IWinner>;
     let allWinnersCount;
 
     if (response.status !== STATUS.OK) {
         winners = [];
         allWinnersCount = '0';
     } else {
-        winners = await response.json();
+        const winnersFromServer: Array<IWinnerFromServer> = await response.json();
 
         allWinnersCount = response.headers.get('X-Total-Count');
+
+        const promises = winnersFromServer.map(async ({ id, wins, time }) => {
+            const { name, color }: { name: string; color: string } = await getCar(id);
+
+            return { name, color, wins, time };
+        });
+        winners = await Promise.all(promises);
     }
 
     return { winners, allWinnersCount };

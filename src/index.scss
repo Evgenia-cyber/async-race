@@ -79,9 +79,30 @@ input:focus {
 }
 
 .popup {
-    position: absolute;
+    position: fixed;
     left: 50%;
     top: 20px;
     padding: 20px;
+    background-color: #292525;
     border: 2px solid rgb(173, 0, 0);
+}
+
+table,
+th,
+td {
+    border: 1px dashed rgb(173, 173, 173);
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 5px 10px;
+    text-align: center;
+}
+
+td {
+    svg {
+        width: 50px;
+        height: 100%;
+    }
 }

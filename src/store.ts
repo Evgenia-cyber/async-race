@@ -6,6 +6,7 @@ const garagePageNumFromLocalStorage = localStorage.getItem(LOCAL_STORAGE_GARAGE_
 const initGaragePageNum = garagePageNumFromLocalStorage ? Number(garagePageNumFromLocalStorage) : DEFAULT_PAGE_NUMBER;
 
 const { cars, allCarsCount } = await getCars(initGaragePageNum);
+
 const { winners, allWinnersCount } = await getWinners(DEFAULT_PAGE_NUMBER);
 
 const store: IStore = {

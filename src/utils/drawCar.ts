@@ -1,7 +1,7 @@
-const drawCar = (color: string, id: number) => `<?xml version="1.0" standalone="no"?>
+const drawCar = (color: string, id?: number) => `<?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
  "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg id='car-${id}' version="1.0" xmlns="http://www.w3.org/2000/svg"
+<svg ${id ? `id = car-${id}` : ''} version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="1280.000000pt" height="640.000000pt" viewBox="0 0 1280.000000 640.000000"
  preserveAspectRatio="xMidYMid meet">
 <metadata>

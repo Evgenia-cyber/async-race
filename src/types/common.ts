@@ -24,13 +24,26 @@ export interface ICar {
     color: string;
 }
 
+export interface IWinnerFromServer {
+    id: number;
+    wins: number;
+    time: number;
+}
+
+export interface IWinner {
+    name: string;
+    color: string;
+    wins: number;
+    time: number;
+}
+
 export interface IStore {
     currentView: string;
     garageCurrentPageNum: number;
     cars: Array<ICar>;
     allCarsCount: string;
     winnersCurrentPageNum: number;
-    winners: Array<any>;
+    winners: Array<IWinner>;
     allWinnersCount: string;
     sort: SORTS;
     order: ORDERS;
