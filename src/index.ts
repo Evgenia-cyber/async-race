@@ -31,7 +31,12 @@ const garagePaginationPrevBtn = document.querySelector('#garage-pagination-prev'
 const garagePaginationNextBtn = document.querySelector('#garage-pagination-next') as HTMLButtonElement;
 const garageCurrentPageEl = document.querySelector('#garage-current-page-num') as HTMLElement;
 
+const winnersPaginationPrevBtn = document.querySelector('#winners-pagination-prev') as HTMLButtonElement;
+const winnersPaginationNextBtn = document.querySelector('#winners-pagination-next') as HTMLButtonElement;
+const winnersCurrentPageEl = document.querySelector('#winners-current-page-num') as HTMLElement;
+
 const carsEl = document.querySelector('#cars') as HTMLElement;
+const winnersEl = document.querySelector('tbody') as HTMLElement;
 
 const handlerOnClick = async (event: MouseEvent) => {
     const { id } = event.target as HTMLElement;
@@ -65,6 +70,11 @@ const handlerOnClick = async (event: MouseEvent) => {
         paginate(garagePaginationPrevBtn, garagePaginationNextBtn, garageCurrentPageEl, carsEl, true);
     } else if (id === 'garage-pagination-prev') {
         paginate(garagePaginationPrevBtn, garagePaginationNextBtn, garageCurrentPageEl, carsEl, false);
+    } else if (id === 'winners-pagination-next') {
+        paginate(winnersPaginationPrevBtn, winnersPaginationNextBtn, winnersCurrentPageEl, winnersEl, true);
+    } else if (id === 'winners-pagination-prev') {
+        paginate(winnersPaginationPrevBtn, winnersPaginationNextBtn, winnersCurrentPageEl, winnersEl, false);
     }
 };
+
 document.addEventListener('click', handlerOnClick);
