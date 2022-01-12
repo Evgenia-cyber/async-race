@@ -10,6 +10,7 @@ import {
     LOCAL_STORAGE_WINNERS_PAGE_NUM,
 } from '../constants';
 import store from '../store';
+import { disableBtn, enableBtn } from './utils';
 
 export const getMaxPageNum = (allCount: string, countPerPage: number) => Math.ceil(Number(allCount) / countPerPage);
 
@@ -51,6 +52,9 @@ const paginate = async (
         store.cars = result.cars;
 
         rerenderedEl.innerHTML = renderCars();
+
+        disableBtn('#reset-cars');
+        enableBtn('#race-cars');
     } else {
         store.winnersCurrentPageNum = newPageNum;
 
@@ -66,46 +70,5 @@ const paginate = async (
 
     localStorage.setItem(localStorageName, newPageNum.toString());
 };
-
-// const paginate = async (
-//     prevBtnEl: HTMLButtonElement,
-//     nextBtnEl: HTMLButtonElement,
-//     currentPageNumEl: HTMLElement,
-//     rerenderedEl: HTMLElement,
-//     isNextBtnClicked: boolean = false
-// ) => {
-//     const isGarageView = store.currentView === VIEW_NAME.garage;
-
-//     // if (isGarageView) {
-//     const currentPageNum = store.garageCurrentPageNum;
-//     const newPageNum = isNextBtnClicked ? currentPageNum + 1 : currentPageNum - 1;
-
-//     if (newPageNum === DEFAULT_PAGE_NUMBER) {
-//         prevBtnEl.disabled = true;
-//     } else {
-//         prevBtnEl.disabled = false;
-//     }
-
-//     const maxPageNum = getMaxPageNum(store.allCarsCount, COUNT_CARS_PER_PAGE);
-//     if (newPageNum === maxPageNum) {
-//         nextBtnEl.disabled = true;
-//     } else {
-//         nextBtnEl.disabled = false;
-//     }
-
-//     store.garageCurrentPageNum = newPageNum;
-
-//     currentPageNumEl.innerHTML = `Page#${store.garageCurrentPageNum}`;
-
-//     const result = await getCars(newPageNum);
-//     store.cars = result.cars;
-
-//     rerenderedEl.innerHTML = renderCars();
-
-//     localStorage.setItem(LOCAL_STORAGE_GARAGE_PAGE_NUM, newPageNum.toString());
-//     // } else {
-//     //     console.log('make pagination to winners view');
-//     // }
-// };
 
 export default paginate;
