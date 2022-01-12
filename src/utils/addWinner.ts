@@ -1,12 +1,12 @@
 import { getWinners, saveWinner } from '../api';
 import renderWinners from '../components/winners';
-import { DEFAULT_PAGE_NUMBER, VIEW_NAME } from '../constants';
+import { VIEW_NAME } from '../constants';
 import store from '../store';
 
 const addWinner = async (carId: string, time: number) => {
     await saveWinner(carId, time);
 
-    const { winners, allWinnersCount } = await getWinners(DEFAULT_PAGE_NUMBER);
+    const { winners, allWinnersCount } = await getWinners(store.winnersCurrentPageNum);
 
     store.winners = winners;
     store.allWinnersCount = allWinnersCount;
