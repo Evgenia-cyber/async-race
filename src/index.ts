@@ -37,7 +37,7 @@ const winnersPaginationNextBtn = document.querySelector('#winners-pagination-nex
 const winnersCurrentPageEl = document.querySelector('#winners-current-page-num') as HTMLElement;
 
 const carsEl = document.querySelector('#cars') as HTMLElement;
-const winnersEl = document.querySelector('tbody') as HTMLElement;
+const winnersEl = document.querySelector('#winners') as HTMLElement;
 
 const handlerOnClick = async (event: MouseEvent) => {
     const { id } = event.target as HTMLElement;

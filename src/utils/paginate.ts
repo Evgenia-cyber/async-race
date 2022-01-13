@@ -1,6 +1,6 @@
 import { getCars, getWinners } from '../api';
 import renderCars from '../components/cars';
-import renderWinners from '../components/winners';
+import renderWinnersTable from '../components/winnersTable';
 import {
     DEFAULT_PAGE_NUMBER,
     VIEW_NAME,
@@ -63,7 +63,7 @@ const paginate = async (
         const result = await getWinners(newPageNum);
         store.winners = result.winners;
 
-        rerenderedEl.innerHTML = renderWinners();
+        rerenderedEl.innerHTML = renderWinnersTable();
     }
 
     const localStorageName = isGarageView ? LOCAL_STORAGE_GARAGE_PAGE_NUM : LOCAL_STORAGE_WINNERS_PAGE_NUM;

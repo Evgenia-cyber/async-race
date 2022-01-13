@@ -1,7 +1,8 @@
 import { getWinners, saveWinner } from '../api';
 import renderWinnersTable from '../components/winnersTable';
-import { VIEW_NAME } from '../constants';
+import { COUNT_WINNERS_PER_PAGE, VIEW_NAME } from '../constants';
 import store from '../store';
+import { enableBtn } from './utils';
 
 const addWinner = async (carId: string, time: number) => {
     await saveWinner(carId, time);
@@ -14,6 +15,10 @@ const addWinner = async (carId: string, time: number) => {
     document.querySelector('#winners-title').innerHTML = `${VIEW_NAME.winners} (${store.allWinnersCount})`;
 
     document.querySelector('#winners').innerHTML = renderWinnersTable();
+
+    if (Number(store.allWinnersCount) > store.winnersCurrentPageNum * COUNT_WINNERS_PER_PAGE) {
+        enableBtn('#winners-pagination-next');
+    }
 };
 
 export default addWinner;
