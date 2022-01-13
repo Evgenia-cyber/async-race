@@ -8,7 +8,10 @@ const renderGaragePagination = () => `
       store.garageCurrentPageNum === DEFAULT_PAGE_NUMBER ? 'disabled' : ''
   }>Prev</button>
   <button class='button' id='garage-pagination-next' ${
-      store.garageCurrentPageNum === getMaxPageNum(store.allCarsCount, COUNT_CARS_PER_PAGE) ? 'disabled' : ''
+      store.garageCurrentPageNum === getMaxPageNum(store.allCarsCount, COUNT_CARS_PER_PAGE) ||
+      store.allCarsCount === '0'
+          ? 'disabled'
+          : ''
   }>Next</button>
 </div>`;
 
