@@ -13,6 +13,7 @@ import resetAll from './utils/resetAll';
 import generateCars from './utils/generateCars';
 
 import './index.scss';
+import deleteCar from './utils/deleteCar';
 
 const root = document.querySelector('#root');
 root.innerHTML = renderApp();
@@ -40,7 +41,6 @@ const winnersEl = document.querySelector('tbody') as HTMLElement;
 
 const handlerOnClick = async (event: MouseEvent) => {
     const { id } = event.target as HTMLElement;
-    console.log(2, id);
     if (id === 'link-to-winners') {
         linkTo(garageViewEl, winnersViewEl, VIEW_NAME.winners);
     } else if (id === 'link-to-garage') {
@@ -52,8 +52,8 @@ const handlerOnClick = async (event: MouseEvent) => {
     } else if (id === 'submit-update-car') {
         updateCar(event, updateCarNameInput, updateCarColorInput, updateSubmit);
     } else if (id.includes('remove-car-')) {
-        // TODO remove car from garage and from winners
-        console.log('remove this car');
+        const carId = getId('remove-car-', id);
+        deleteCar(carId);
     } else if (id.includes('race-car-')) {
         const carId = getId('race-car-', id);
         raceCar(carId);

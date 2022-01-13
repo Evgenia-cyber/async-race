@@ -1,5 +1,5 @@
 import { getWinners, saveWinner } from '../api';
-import renderWinners from '../components/winners';
+import renderWinnersTable from '../components/winnersTable';
 import { VIEW_NAME } from '../constants';
 import store from '../store';
 
@@ -13,7 +13,7 @@ const addWinner = async (carId: string, time: number) => {
 
     document.querySelector('#winners-title').innerHTML = `${VIEW_NAME.winners} (${store.allWinnersCount})`;
 
-    document.querySelector('tbody').innerHTML = renderWinners();
+    document.querySelector('#winners').innerHTML = renderWinnersTable();
 };
 
 export default addWinner;

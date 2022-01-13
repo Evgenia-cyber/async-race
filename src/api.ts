@@ -227,3 +227,29 @@ export const saveWinner = async (id: string, lastWinTime: number) => {
         await createWinner(id, lastWinTime);
     }
 };
+
+export const deleteCar = async (id: string) => {
+    const response = await fetch(`${ENDPOINTS.garage}/${id}`, {
+        method: 'DELETE',
+    });
+
+    if (response.status === STATUS.NOT_FOUND) {
+        // eslint-disable-next-line no-console
+        console.error(`Error: Car with id=${id} was not found in the garage.`);
+    }
+};
+
+export const deleteWinner = async (id: string) => {
+    const { status } = await getWinner(id);
+
+    if (status === STATUS.OK) {
+        const response = await fetch(`${ENDPOINTS.winners}/${id}`, {
+            method: 'DELETE',
+        });
+
+        if (response.status === STATUS.NOT_FOUND) {
+            // eslint-disable-next-line no-console
+            console.error(`Error: Car with id=${id} was not found in the winners table.`);
+        }
+    }
+};
