@@ -1,0 +1,126 @@
+body {
+    margin: 40px 20px;
+    color: #ffffff;
+    background-color: #292525;
+}
+
+input:focus {
+    outline: none;
+}
+
+.hide {
+    display: none;
+}
+
+.button {
+    background-color: #d5faff;
+    &:hover {
+        background-color: #aef4fd;
+        cursor: pointer;
+    }
+    &:disabled {
+        background-color: #d5faff;
+        cursor: default;
+    }
+}
+
+.car-item {
+    margin-bottom: 30px;
+    .road {
+        position: relative;
+        height: 30px;
+        margin-bottom: 5px;
+        border-bottom: 2px dashed #ffffff;
+        .flag {
+            position: absolute;
+            bottom: 3px;
+            right: 80px;
+        }
+    }
+
+    .car {
+        height: 100%;
+        svg {
+            width: 50px;
+            height: 100%;
+        }
+    }
+
+    .car-name {
+        margin-bottom: 0;
+    }
+}
+
+.form {
+    margin-top: 20px;
+
+    input[type='text']:disabled {
+        border-color: transparent;
+    }
+
+    input[type='color']::-webkit-color-swatch-wrapper {
+        padding: 0;
+    }
+
+    input[type='color']::-webkit-color-swatch {
+        border: none;
+    }
+
+    .color-car-input {
+        height: 22px;
+        vertical-align: bottom;
+        background: none;
+        border: none;
+    }
+}
+
+.cars-controllers {
+    margin-top: 20px;
+}
+
+.popup {
+    position: fixed;
+    left: 50%;
+    top: 20px;
+    padding: 20px;
+    background-color: #292525;
+    border: 2px solid rgb(173, 0, 0);
+}
+
+table,
+th,
+td {
+    border: 1px dashed rgb(173, 173, 173);
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 5px 10px;
+    text-align: center;
+}
+
+td {
+    svg {
+        width: 50px;
+        height: 100%;
+    }
+}
+
+.winners-pagination {
+    margin: 30px 0 10px;
+}
+
+.sorts {
+    display: flex;
+    margin-top: 20px;
+
+    & .buttons-sort {
+        display: flex;
+        flex-direction: column;
+    }
+
+    & .active-sort {
+        background-color: #7beefd;
+    }
+}
