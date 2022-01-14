@@ -110,3 +110,17 @@ td {
 .winners-pagination {
     margin: 30px 0 10px;
 }
+
+.sorts {
+    display: flex;
+    margin-top: 20px;
+
+    & .buttons-sort {
+        display: flex;
+        flex-direction: column;
+    }
+
+    & .active-sort {
+        background-color: #7beefd;
+    }
+}

@@ -148,13 +148,10 @@ export const getCars = async (pageNum: number, limit = COUNT_CARS_PER_PAGE) => {
     return { cars, allCarsCount };
 };
 
-export const getWinners = async (
-    pageNum: number,
-    limit: number = COUNT_WINNERS_PER_PAGE,
-    sort: SORTS = SORTS.ID,
-    order: ORDERS = ORDERS.ASC
-) => {
-    const response = await fetch(`${ENDPOINTS.winners}?_page=${pageNum}&_limit=${limit}&_sort=${sort}&_order=${order}`);
+export const getWinners = async (pageNum: number, sort: SORTS = SORTS.ID, order: ORDERS = ORDERS.ASC) => {
+    const response = await fetch(
+        `${ENDPOINTS.winners}?_page=${pageNum}&_limit=${COUNT_WINNERS_PER_PAGE}&_sort=${sort}&_order=${order}`
+    );
 
     let winners: Array<IWinner>;
     let allWinnersCount;

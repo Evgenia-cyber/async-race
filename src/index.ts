@@ -14,6 +14,7 @@ import generateCars from './utils/generateCars';
 
 import './index.scss';
 import deleteCar from './utils/deleteCar';
+import sorts from './utils/sorts';
 
 const root = document.querySelector('#root');
 root.innerHTML = renderApp();
@@ -74,6 +75,8 @@ const handlerOnClick = async (event: MouseEvent) => {
         paginate(winnersPaginationPrevBtn, winnersPaginationNextBtn, winnersCurrentPageEl, winnersEl, true);
     } else if (id === 'winners-pagination-prev') {
         paginate(winnersPaginationPrevBtn, winnersPaginationNextBtn, winnersCurrentPageEl, winnersEl, false);
+    } else if (id.includes('sort-by-')) {
+        sorts(id);
     }
 };
 
